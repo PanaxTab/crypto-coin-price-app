@@ -10,7 +10,6 @@ pub mod macros {
             {
                 data: CryptoRate,
             }
-
             #[allow(non_snake_case)]
             #[derive(Deserialize,Debug)]
             struct CryptoRate
@@ -26,7 +25,7 @@ pub mod macros {
                 let resp = reqwest::blocking::get(format!("{url}"))?;
                 
                 let body: PriceResponse = resp.json::<PriceResponse>()?;
-                
+
                 let price: Decimal = match Decimal::from_str(&body.data.rateUsd)
                 {
                     Ok(num)=> num,

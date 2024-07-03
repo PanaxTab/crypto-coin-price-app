@@ -1,5 +1,7 @@
-use module::macros::get_coin_price;
-pub mod module;
+use match_module::macros::create_match;
+use price_module::macros::get_coin_price;
+pub mod price_module;
+pub mod match_module;
 slint::include_modules!();
 
 fn main() -> Result<(), slint::PlatformError> {
@@ -9,19 +11,7 @@ fn main() -> Result<(), slint::PlatformError> {
         let ui_handle = ui.as_weak();
         move || {
             let ui = ui_handle.unwrap();
-            get_coin_price!(bitcoin);
-            match bitcoin()
-            {
-                Ok(btc_price)=>
-                {
-                    println!("Hi!");
-                    let btc_price:String = format!("{:.2}",btc_price);
-                    ui.set_coin_price(slint::SharedString::from(btc_price.clone()));
-                },
-                Err(_)=>{
-                    println!("Failed to grab price!");
-                }
-            };
+            create_match!(ui);
         }
     });
 
