@@ -1,0 +1,18 @@
+[package]
+name = "coin_price_gui"
+version = "0.1.0"
+authors = ["PanaxTab <panax36@gmail.com>"]
+edition = "2021"
+build = "build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.12.5", features = ["blocking", "json"] }
+rust_decimal = "1.35.0"
+serde = { version = "1.0.203", features = ["derive"] }
+slint = "1.6"
+tokio = { version = "1.38.0", features = ["full"] }
+
+[build-dependencies]
+slint-build = "1.6"

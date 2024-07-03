@@ -1,0 +1,39 @@
+import { Button, VerticalBox } from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+    width:300px;
+    height:150px;
+    title: "Coin Prices";
+    in-out property<string> coin_price: "";
+    callback request-increase-value();
+    VerticalBox {
+        VerticalLayout {
+            alignment: center;
+            HorizontalLayout {
+                spacing: 10px;
+                Image {
+                    source: @image-url("../logos/Bitcoin.png");
+                    width:25px;
+                }
+                Text {
+                    font-size: 24px;
+                    vertical-alignment: center;
+                    text:"BTC Price";
+                }
+                Text {
+                    font-size: 24px;
+                    horizontal-alignment: right;  
+                    text: "$\{root.coin_price}";
+                }
+            }
+        }
+        Button {
+            height: 50px;
+            primary: true;
+            text: "Refresh";
+            clicked => {
+                root.request-increase-value();
+            }
+        }
+    }
+}
